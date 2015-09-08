@@ -69,7 +69,9 @@ abstract class AbstractPresenter
      */
     public function __isset($key)
     {
-        if (is_array($this->object)) {
+        if (method_exists($this, $key) || method_exists($this, camel_case($key))) {
+            return true;
+        } elseif (is_array($this->object)) {
             return isset($this->object[$key]);
         }
 
