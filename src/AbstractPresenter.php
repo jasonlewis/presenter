@@ -53,6 +53,8 @@ abstract class AbstractPresenter
     {
         if (method_exists($this, $key)) {
             return $this->{$key}();
+        } elseif (method_exists($this, camel_case($key))) {
+            return $this->{camel_case($key)}();
         }
 
         return $this->getObjectAttribute($key);
