@@ -59,6 +59,22 @@ abstract class AbstractPresenter
     }
 
     /**
+     * Dynamically check if the attribute is set on the object.
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function __isset($key)
+    {
+        if (is_array($this->object)) {
+            return isset($this->object[$key]);
+        }
+
+        return isset($this->object->{$key});
+    }
+
+    /**
      * Dynamically call a method on the wrapped object.
      *
      * @param string $method
