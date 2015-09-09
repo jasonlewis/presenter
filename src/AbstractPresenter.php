@@ -2,9 +2,11 @@
 
 namespace Lewis\Presenter;
 
+use ArrayAccess;
+use RuntimeException;
 use BadMethodCallException;
 
-abstract class AbstractPresenter
+abstract class AbstractPresenter implements ArrayAccess
 {
     /**
      * The object being decorated.
@@ -95,5 +97,60 @@ abstract class AbstractPresenter
         }
 
         throw new BadMethodCallException('Method '.$method.' not found on AbstractPresenter.');
+    }
+
+    /**
+     * Determine if an offset exists.
+     *
+     * @param mixed $offset
+     *
+     * @return bool
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->$offset);
+    }
+
+    /**
+     * Get an offset.
+     *
+     * @param mixed $offset
+     *
+     * @return mixed
+     */
+    public function offsetGet($offset)
+    {
+        return $this->getObjectAttribute($offset);
+    }
+
+    /**
+     * Set an offset. Not implemented via the presenter. If required, set directly
+     * on the wrapped object.
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     *
+     * @throws \RuntimeException
+     *
+     * @return void
+     */
+    public function offsetSet($offset, $value)
+    {
+        throw new RuntimeException('Cannot dynamically set object properties via presenter.');
+    }
+
+    /**
+     * Unset an offset. Not implemented via the presenter. If required, unset directly
+     * on the wrapped object.
+     *
+     * @param mixed $offset
+     *
+     * @throws \RuntimeException
+     *
+     * @return void
+     */
+    public function offsetUnset($offset)
+    {
+        throw new RuntimeException('Cannot dynamically unset object properties via presenter.');
     }
 }
