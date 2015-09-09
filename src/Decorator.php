@@ -3,9 +3,9 @@
 namespace Lewis\Presenter;
 
 use Illuminate\Support\Collection;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Pagination\AbstractPaginator as Paginator;
 
 class Decorator
 {
