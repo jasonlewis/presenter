@@ -26,7 +26,7 @@ class PresenterServiceProvider extends ServiceProvider
             $data = array_merge($view->getFactory()->getShared(), $view->getData());
 
             foreach ($data as $key => $value) {
-                $data[$key] = $this->app['decorator']->decorate($value);
+                $view[$key] = $this->app['decorator']->decorate($value);
             }
         });
     }
