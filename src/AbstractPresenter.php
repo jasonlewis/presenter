@@ -93,7 +93,7 @@ abstract class AbstractPresenter implements ArrayAccess
     public function __call($method, array $parameters)
     {
         if (is_object($this->object) && method_exists($this->object, $method)) {
-            return call_user_func_array($this->object, $parameters);
+            return call_user_func_array([$this->object, $method], $parameters);
         }
 
         throw new BadMethodCallException('Method '.$method.' not found on AbstractPresenter.');
