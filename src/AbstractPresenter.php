@@ -120,7 +120,7 @@ abstract class AbstractPresenter implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return $this->getObjectAttribute($offset);
+        return $this->$offset;
     }
 
     /**
