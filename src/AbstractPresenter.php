@@ -72,7 +72,7 @@ abstract class AbstractPresenter implements ArrayAccess
     public function __isset($key)
     {
         if (method_exists($this, $key) || method_exists($this, camel_case($key))) {
-            return true;
+            return ! is_null($this->__get($key));
         } elseif (is_array($this->object)) {
             return isset($this->object[$key]);
         }
