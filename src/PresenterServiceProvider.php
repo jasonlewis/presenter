@@ -14,9 +14,11 @@ class PresenterServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->mergeConfigFrom($configPath = realpath(__DIR__.'/../config/presenters.php'), 'presenters');
+
         if (class_exists('Illuminate\Foundation\Application', false)) {
             $this->publishes([
-                realpath(__DIR__.'/../config/presenters.php') => config_path('presenters.php'),
+                $configPath => config_path('presenters.php'),
             ]);
         }
 
