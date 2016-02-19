@@ -11,10 +11,10 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "illuminate/support": "5.1.*"
+        "illuminate/support": "5.1.*|5.2.*"
     },
     "require-dev": {
-        "illuminate/pagination": "5.1.*",
+        "illuminate/pagination": "5.1.*|5.2.*",
         "phpunit/phpunit": "~4.0",
         "mockery/mockery": "~0.9",
         "squizlabs/php_codesniffer": "~2.0"
